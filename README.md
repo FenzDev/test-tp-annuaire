@@ -76,6 +76,10 @@ void addContact(media/annuaire* A, char nom[], char prenom[], char relation[], N
 ```
 Example for verification:
 ```c
+Annuaire A = NULL;
+
+printAnnuaire(A);
+
 char *n[] = {"+21325123123"};
 addContact(&A, "Feniche", "Moncef", "Me", createNumsList(n, 1));
 
@@ -83,7 +87,7 @@ printf("After adding new contact:\n");
 printAnnuaire(media/a);
 ```
 
-| ![](media/a1before.jpg) |  ![](media/a1.jpg) |
+| ![](media/a1b4.jpg) |  ![](media/a1.jpg) |
 |--|--|
 
 ```c
