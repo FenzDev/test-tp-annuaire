@@ -1,5 +1,7 @@
-By:  Fenniche Moncef
-Group: G2
+University year: 2025/2026 (L2)
+Name: Fenniche Moncef
+Group: G2 
+
 # Annuaire Téléphonique
 
 First we define the followings :
@@ -43,10 +45,10 @@ void printContact(contact c) {
     printf("---\n");
 }
 
-void printAnnuaire(Annuaire A) {
+void printAnnuaire(media/annuaire A) {
     contact * c = A;
     printf("---\n");
-    if (A == NULL) {
+    if (media/a == NULL) {
         printf("Annuaire est vide\n---\n");
     }
     while (c != NULL) {
@@ -57,8 +59,10 @@ void printAnnuaire(Annuaire A) {
 ```
 ---
 
+## Ajouter des contacts
+
 ```c
-void addContact(Annuaire* A, char nom[], char prenom[], char relation[], NumPtr nums) {
+void addContact(media/annuaire* A, char nom[], char prenom[], char relation[], NumPtr nums) {
     contact* c = (contact*)malloc(sizeof(contact));
     if (c != NULL) {
         strcpy(c->Prenom, prenom);
@@ -76,10 +80,10 @@ char *n[] = {"+21325123123"};
 addContact(&A, "Feniche", "Moncef", "Me", createNumsList(n, 1));
 
 printf("After adding new contact:\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 ```
 
-| ![](a1before.jpg) |  ![](a1.jpg) |
+| ![](media/a1before.jpg) |  ![](media/a1.jpg) |
 |--|--|
 
 ```c
@@ -91,17 +95,19 @@ char *n3[] = {"3015"};
 addContact(&A, "ALG", "Poste", "Service", createNumsList(n3, 1));
 
 printf("After adding several new contacts:\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 ```
 
-| ![](a2b4.png) |  ![](a2.png) |
+| ![](media/a2b4.png) |  ![](media/a2.png) |
 |--|--|
 
 
 ---
 
+## Rechercher un contact
+
 ```c
-contact searchContact(Annuaire A, char nom[], char prenom[]) {
+contact searchContact(media/annuaire A, char nom[], char prenom[]) {
     contact* c = A;
     while (c != NULL) {
         if (strcmp(c->Nom,nom) == 0 && strcmp(c->Prenom,prenom) == 0) {
@@ -116,7 +122,7 @@ contact searchContact(Annuaire A, char nom[], char prenom[]) {
 Example for verification:
 
 ```c
-contact* foundC = searchContact(A, "Peterson", "John");
+contact* foundC = searchContact(media/a, "Peterson", "John");
 
 printf("After searching for 'Peterson John' :\n");
 if (foundC == NULL)
@@ -127,13 +133,15 @@ else {
 }
 ```
 
-| ![](a3.png) |
+| ![](media/a3.png) |
 |--|
 
 ---
 
+## Supprimer un contact
+
 ```c
-void deleteContact(Annuaire* A, char nom[], char prenom[]) {
+void deleteContact(media/annuaire* A, char nom[], char prenom[]) {
     contact *c = *A, *cPrv = NULL;
     while (c != NULL) {
         if (strcmp(c->Nom,nom) == 0 && strcmp(c->Prenom,prenom) == 0) {
@@ -162,17 +170,18 @@ Example for verification:
 deleteContact(&A, "ALG", "Poste");
 
 printf("After deleting 'ALG Poste' contact :\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 ```
 
-| ![](a4b4.png) |  ![](a4.png) |
+| ![](media/a4b4.png) |  ![](media/a4.png) |
 |--|--|
 
 ---
 
+## Modifier un contact
 
 ```c
-void modifyContact(Annuaire* A, char nom[], char prenom[], char novNom[], char novPrenom[], char novRel[]) {
+void modifyContact(media/annuaire* A, char nom[], char prenom[], char novNom[], char novPrenom[], char novRel[]) {
     contact *c = *A;
     while (c != NULL) {
         if (strcmp(c->Nom,nom) == 0 && strcmp(c->Prenom,prenom) == 0) {
@@ -193,17 +202,19 @@ modifyContact(&A, "Feniche", "Moncef", "Fenniche", "Moncef", "Personal");
 
 printf("After modifying 'Feniche' contact :\n");
 printf("Feniche -> Fenniche , Me -> Personal\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 ```
 
-| ![](a5b4.png) |  ![](a5.png) |
+| ![](media/a5b4.png) |  ![](media/a5.png) |
 |--|--|
 
 
 ---
 
+## Fusionner les contacts en double
+
 ```c
-void mergeContacts(Annuaire* A) {
+void mergeContacts(media/annuaire* A) {
 
     contact *c = *A;
     while (c != NULL) {
@@ -239,22 +250,23 @@ Example for verification:
 addContact( &A, "Fenniche", "Moncef", "Personal", createNumsList((char*[]){"+213777001122"}, 1));
 
 printf("After adding a duplicate contact :\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 
 mergeContacts(&A);
 
 printf("After merging duplicates :\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 ```
 
-| ![](a6b4.png) |  ![](a6.png) |  ![](a7.png) |
+| ![](media/a6b4.png) |  ![](media/a6.png) |  ![](media/a7.png) |
 |--|--|--|
 
 ---
 
+## Créer un sous-carnet
 
 ```c
-Annuaire subContacts(Annuaire A, char criteria[]) {
+Annuaire subContacts(media/annuaire A, char criteria[]) {
     Annuaire subA = NULL;
     contact* subATail = NULL;
     contact *c = A;
@@ -302,19 +314,21 @@ Annuaire subContacts(Annuaire A, char criteria[]) {
 Example for verification:
 
 ```c
-Annuaire colA = subContacts(A, "Colleague");
+Annuaire colA = subContacts(media/a, "Colleague");
 
 printf("Sous-Annuaire of 'Colleague': \n");
 printAnnuaire(colA);
 ```
 
-| ![](a8.png) |
+| ![](media/a8.png) |
 |--|
 
 ---
 
+## Sauvegarder et charger
+
 ```c
-void saveAnnuaire(Annuaire A, char* fname) {
+void saveAnnuaire(media/annuaire A, char* fname) {
     FILE* f = fopen(fname, "wb");
     if (f != NULL) {
         contact* c = A;
@@ -352,14 +366,14 @@ saveAnnuaire(colA, "sous.anr");
 printf("'Colleague' Sous-Annuaire is saved in 'sous.anr'\n");
 ```
 
-| ![](a9.png) <br/> ![](a9file.png) |
+| ![](media/a9.png) <br/> ![](media/a9file.png) |
 |--|
 
 
 ```c
-int loadAnnuaire(Annuaire* A, char* fname) {
+int loadAnnuaire(media/annuaire* A, char* fname) {
     while ((*A) != NULL) {
-        deleteContact(A, (*A)->Nom, (*A)->Prenom);
+        deleteContact(media/a, (*A)->Nom, (*A)->Prenom);
     }
 
     FILE* f = fopen(fname, "rb");
@@ -394,7 +408,7 @@ int loadAnnuaire(Annuaire* A, char* fname) {
                 }
             } while (!feof(f));
 
-            addContact(A, c.Nom, c.Prenom, c.Relation, c.Nums);
+            addContact(media/a, c.Nom, c.Prenom, c.Relation, c.Nums);
 
             fread(&whatsNext, sizeof(char), 1, f);
 
@@ -412,9 +426,9 @@ int loadAnnuaire(Annuaire* A, char* fname) {
 loadAnnuaire(&A, "sous.anr");
 
 printf("'Colleague' Sous-Annuaire is loaded from 'sous.anr'\n");
-printAnnuaire(A);
+printAnnuaire(media/a);
 ```
 
 
-| ![](a10.png) |
+| ![](media/a10.png) |
 |--|
