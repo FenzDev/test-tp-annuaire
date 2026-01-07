@@ -424,6 +424,7 @@ int loadAnnuaire(Annuaire* A, char* fname) {
     return 0;
 }
 ```
+Example for verification:
 
 ```c
 // loadAnnuaire deletes any contact inside 'A'
