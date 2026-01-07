@@ -1,6 +1,6 @@
-University year: 2025/2026 (L2)
-Name: Fenniche Moncef
-Group: G2 
+University year: 2025/2026 (L2) \
+Name: Fenniche Moncef \
+Group: G2
 
 # Annuaire Téléphonique
 
