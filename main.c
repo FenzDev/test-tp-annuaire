@@ -229,7 +229,7 @@ void mergeContacts(Annuaire* A) {
                 while (cTail->Next != NULL) cTail = cTail ->Next;
                 cTail->Next = d->Nums;
 
-                NumPtr dTmp = d;
+                contact* dTmp = d;
                 d = d->Next;
                 free(dTmp);
             } else {
