@@ -278,18 +278,20 @@ void printAnnuaire(Annuaire A) {
 
 Annuaire currentA = NULL;
 
+void readString(char* str, int size) {
+    fflush(stdin);
+    fgets(str, size, stdin);
+    str[strlen(str)-1] = '\0';
+}
+
 contact readNomPrenom(){
     contact c;
 
     printf("Donnez le nom:  ");
-    fflush(stdin);
-    fgets(c.Nom, sizeof(c.Nom), stdin);
-    c.Nom[strlen(c.Nom)-1] = '\0';
+    readString(c.Nom, sizeof(c.Nom));
 
     printf("Donnez le prenom:  ");
-    fflush(stdin);
-    fgets(c.Prenom, sizeof(c.Prenom), stdin);
-    c.Nom[strlen(c.Prenom)-1] = '\0';
+    readString(c.Prenom, sizeof(c.Prenom));
 
     return c;
 }
@@ -298,9 +300,7 @@ contact readNomPrenomRelation() {
     contact c = readNomPrenom();
 
     printf("Donnez le lien/relation:  ");
-    fflush(stdin);
-    fgets(c.Relation, sizeof(c.Relation), stdin);
-    c.Nom[strlen(c.Relation)-1] = '\0';
+    readString(c.Relation, sizeof(c.Relation));
 
 
     return c;
@@ -310,7 +310,7 @@ void choiceRechercher() {
     contact c = readNomPrenom();
 
     contact* foundC = searchContact(currentA, c.Nom, c.Prenom);
-
+    
     if (foundC == NULL) {
         printf("\nAucune contacte avec ces information.\n");
     } else {
@@ -329,8 +329,7 @@ void choiceAjouter( ) {
         NumPtr n = (NumPtr)malloc(sizeof(NumNode));
 
         printf("Donner un numero:  ");
-        fflush(stdin);
-        fgets(n->Num, sizeof(n->Num), stdin);
+        readString(n->Num, sizeof(n->Num));
 
         n->Next = c.Nums;
         c.Nums = n;
@@ -373,16 +372,13 @@ void choiceModifier( ) {
     contact newC;
 
     printf("Donnez un noveau nom:    ");
-    fflush(stdin);
-    fgets(newC.Nom, sizeof(c.Nom), stdin);
+    readString(newC.Nom, sizeof(newC.Nom));
 
     printf("Donnez un noveau prenom: ");
-    fflush(stdin);
-    fgets(newC.Prenom, sizeof(c.Prenom), stdin);
+    readString(newC.Prenom, sizeof(newC.Prenom));
 
     printf("Donnez un noveau lien/relation : ");
-    fflush(stdin);
-    fgets(newC.Relation, sizeof(c.Relation), stdin);
+    readString(newC.Relation, sizeof(newC.Relation));
 
     modifyContact(&currentA, c.Nom, c.Prenom, newC.Nom, newC.Prenom, newC.Relation );
 
@@ -392,10 +388,7 @@ void choiceModifier( ) {
 void choiceSauvgarder() {
     char fname[100];
     printf("Donnez le nom de fichier pour sauvegarder : \n");
-    fflush(stdin);
-    fgets(fname, sizeof(fname), stdin);
-    int len = strlen(fname);
-    if (len>0) fname[len-1] = '\0'; // remove trailing \n
+    readString(fname, fname);
 
     saveAnnuaire(currentA, fname);
 
@@ -416,8 +409,7 @@ void choiceCharger() {
 
     char fname[100];
     printf("Donnez le nom de fichier pour charger : \n");
-    fflush(stdin);
-    fgets(fname, sizeof(fname), stdin);
+    readString(fname, sizeof(fname));
     int len = strlen(fname);
     if (len>0) fname[len-1] = '\0'; // remove trailing \n
 
@@ -440,8 +432,7 @@ void choiceCreerSousCarnet() {
     char crit[25];
 
     printf("Donnez un lien/relation pour creer un sous carnet: \n");
-    fflush(stdin);
-    fgets(crit, sizeof(crit), stdin);
+    readString(crit, sizeof(crit));
 
     Annuaire subA = subContacts(currentA, crit);
 
@@ -540,7 +531,6 @@ int applyChoice(int choice){
 }
 
 void menu(){
-
     int choice;
     int exit = 0;
     while (!exit) {
